@@ -1,0 +1,148 @@
+<?php
+ use Model\BusinessModel\Usuarios;
+
+$this->toggleUrl    = "/admin/admins/toggle";
+    $this->deleteUrl    = "/admin/profesors/delete";
+    $this->editUrl      = "/admin/profesors/edit";
+    $this->showUrl      = "/admin/profesors/show";
+    $this->msgUrl      = "/admin/mensajes/new";
+?>
+
+<div class="row">
+
+<!-- NEW COL START -->
+<div class="col-sm-12">
+
+    <div role="widget" class="jarviswidget" id="wid-id-0">
+        
+        <header role="heading" style="height:60px;padding:10px">
+
+            <span class="widget-icon"> <i class="fa fa-lg fa-user-md"></i> </span>
+            
+            <h2>Profesores</h2>
+            <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_SUPERADMIN){ ?>
+
+            <div class="pull-right">
+                <a class="btn btn-success" href="<?php echo $this->editUrl?>">
+                    <i class="fa fa-plus"></i> Añadir Nuevo Profesor
+                </a>
+            </div>
+            <?php } ?>
+            <!--<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>-->
+
+        </header>
+
+        <!-- widget div-->
+        <div role="content">
+
+            <!-- widget content -->
+
+                <table id="index-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" style="width: 100%;" width="100%">
+                    <thead>
+                        <tr role="row">
+                            <th class="index-table-hd" width="40%">Nombre</th>
+                            <th class="index-table-hd" width="30%">Email</th>
+                            <th class="index-table-hd" width="15%">Fecha de alta</th>
+                            <th class="index-table-hd" width="10%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->profesores as $profesor) {?>
+                            <tr role="row">
+                                <td>
+                                    <a title="Ver" href="/admin/profesors/show/<?php echo $profesor['id_user']; ?>">
+                                    <?php echo $profesor['name']." ".$profesor['lastname']; ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <?php echo $profesor['email'] ?>
+                                </td>
+
+                                <td style="text-align:center">
+                                    <?php     $originalDate =$profesor['created_at'];
+                                    $newDate = date("d-m-Y", strtotime($originalDate));
+                                    echo $this->escapeHtml($newDate)?>
+                                </td>
+                                    <td style="text-align:center">
+
+                                        <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_ALUMNO || $_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_PROFESOR){ ?>
+                                            <a class="edit-action" title="Show" href="#"
+                                               data-target-id="<?php echo $profesor['id_user'] ?>"
+                                               data-action-url="<?php echo $this->showUrl ?>">
+                                                <span class="<?php echo $this->iconFA('SHOW',false) ?>"></span>
+                                            </a>
+                                            &nbsp;|&nbsp;
+                                            <a class="edit-action" title="mensage" href="#"
+                                               data-target-id="<?php echo $profesor['id_user'] ?>"
+                                               data-action-url="<?php echo $this->msgUrl ?>">
+                                                <span class="fa fa-envelope"></span>
+                                            </a>
+                                        <?php } ?>
+
+                                        <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_SUPERADMIN ){ ?>
+
+                                        <a class="edit-action" title="Editar" href="#"
+                                       data-target-id="<?php echo $profesor['id_user'] ?>"
+                                       data-action-url="<?php echo $this->editUrl ?>">
+                                        <span class="<?php echo $this->iconFA('EDIT',false) ?>"></span>
+                                    </a>
+                                     <?php if($profesor['id_user'] != $_SESSION['admin_session']['adminId']){?>
+                                    &nbsp;|&nbsp;
+                                    <a class="delete-profe-action" title="Eliminar" href="#"
+                                       data-target-id="<?php echo $profesor['id_user'] ?>"
+                                       data-action-url="<?php echo $this->deleteUrl ?>">
+                                        <span class="<?php echo $this->iconFA('DELETE',false) ?>"></span>
+                                    </a>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </td>
+                                <?php } ?>
+                            </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="widget-body-toolbar" style="border-top: 1px solid #ccc">
+
+                    <div class="btn-group pull-right" style="margin-top:-3px">
+
+                    </div>
+
+                </div>
+
+
+
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+</div>
+<!-- END COL -->
+
+</div>
+
+<script type="text/javascript">
+
+    $.indexTableSetup = function(){
+         $('#index-table').DataTable({
+            "oLanguage": {
+                "sUrl": "/admin/spanish.json"
+            },
+            "bFilter": true,
+            "bPaginate": true,
+            "bInfo": false,
+            "aoColumns": [
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": false }
+            ],
+
+        });
+    }
+
+</script>

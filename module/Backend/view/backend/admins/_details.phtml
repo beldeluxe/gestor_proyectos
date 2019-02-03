@@ -1,0 +1,35 @@
+<div id="details_tab">
+    <div class="widget-body-toolbar">
+
+        <fieldset style="margin: 10px 14px 0;">
+            <div class="row">
+                <section class="col col-md-12">
+                    <p>Profesor: <?php echo $this->profesor['name'].' '.$this->profesor['lastname']; ?></p>
+                </section>
+            </div>
+            <div class="row">
+                <div class="col col-md-4">
+                    <p>Email: <?php echo $this->profesor['email']; ?></p>
+                </div>
+            </div>
+            <div class="row">
+                <?php if($this->alumnos){?>
+                <div class="col col-md-6">
+                    <p>Alumnos en tutoría:</p>
+                    <ul>
+                        <?php foreach ($this->alumnos as $alumno){?>
+                            <li><?php echo $alumno['name'].' '.$alumno['lastname']?></li>
+                        <?php }?>
+                    </ul>
+                </div>
+                <?php } else {?>
+                <section class="col col-md-8">
+                    <p>Este profesor aún no tíene alumnos en tutoría</p>
+                </section>
+                <?php } ?>
+            </div>
+
+        </fieldset>
+
+    </div>
+</div>

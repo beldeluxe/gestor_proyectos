@@ -1,0 +1,84 @@
+<?php
+header("HTTP/1.0 404 Not Found");
+?>
+<?php echo $this->doctype(); ?>
+<html lang="ES">
+    <head>
+       <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+        <!-- FAVICONS -->
+        <link rel="shortcut icon" href="/img/favi.png" type="image/x-icon">
+        <link rel="icon" href="/img/favi.png" type="image/x-icon">
+
+        <meta name="title" content="<?php echo $this->escapeHtml('Página no econtrada') ?>">
+        <meta name="description" content="<?php echo $this->escapeHtml('Página no econtrada') ?>">
+        <meta name="author" content="">
+
+        <META name="robots" content="NOINDEX,NOFOLLOW">
+
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400italic,400,700,700italic' rel='stylesheet' type='text/css'>
+
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+        <link href="/assets/stylesheets/all.css" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="/assets/stylesheets/dependencies/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/dependencies/dropzone.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/all.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/pagination.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/stylecookies.css" media="screen" rel="stylesheet" type="text/css">
+
+        <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="/assets/javascripts/dependencies/html5shiv.min.js" type="text/javascript"></script>
+          <script src="/assets/javascripts/dependencies/respond.min.js" type="text/javascript"></script>
+        <![endif]-->
+
+    </head>
+    <body class="">
+
+        <?php echo $this->header;?>
+
+        <div id="main-content" class="main-content">
+
+            <div class="container background">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="notfound-back">
+                                <div class="box box-notfound">
+                                    <h3>Lo sentimos, no se ha podido encontrar la p&aacute;gina solicitada</h3>  
+                                    <br>
+                                </div><!-- .box -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- main-content -->
+
+        <?php echo $this->footer; ?>
+
+        <script src="/assets/javascripts/dependencies/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="/assets/javascripts/dependencies/placeholders.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.flexslider.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/selectize.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/masonry.pkgd.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.colorbox.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.validate.min.js"></script>
+        <script src="/assets/javascripts/dependencies/dropzone.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/cookies.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/cookies.cdata.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+
+        <!--<script src="/assets/javascripts/dependencies/bootstrap-modal.js" type="text/javascript"></script>-->
+        <script src="/assets/javascripts/all.js" type="text/javascript"></script>
+
+    </body>
+</html>

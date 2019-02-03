@@ -1,0 +1,63 @@
+<div class="row">
+
+<!-- NEW COL START -->
+<div class="col-sm-12">
+
+	<!-- Widget ID (each widget will need unique ID)-->
+	<div role="widget" class="jarviswidget" id="wid-id-0">
+		
+		<header role="heading" style="height:60px;padding:10px">
+
+			<span class="widget-icon"> <i class="fa fa-user"></i> </span>
+            <h2><strong>Alumno </strong></h2>
+
+            <?php if($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_ALUMNO && $this->alumno['has_project'] == 1) {?>
+			<h2><strong>Detalle del alumno </strong></h2>
+            <a  class="pull-right btn btn-success" href="/admin/alumnos/documentacion/<?php echo $_SESSION['admin_session']['adminId']?>" style="padding: 6px 12px; height:32px">
+                <i class="fa fa-times"></i> Subir Documentación
+            </a>
+            <?php } ?>
+			<span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+			<button type="button" class="pull-right btn btn-default" onclick="window.history.back();" style="padding: 6px 12px;height:32px">
+				<i class="fa fa-times"></i> Volver
+
+			</button>
+
+
+		</header>
+
+		<!-- widget div-->
+		<div role="content">
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#detalle">Datos del alumno</a></li>
+                    <li><a data-toggle="tab" href="#doc">Documentación presentada</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="detalle" class="tab-pane fade in active">
+                        <?php echo $this->partial('backend/alumnos/_details.phtml', array( 'alumno' => $this->alumno, 'proyecto' => $this->proyecto, 'tutor' => $this->tutor ));?>
+                    </div>
+                    <div id="doc" class="tab-pane fade">
+                        <?php echo $this->partial('backend/alumnos/_docs.phtml', array( 'documentation' => $this->documentacion));?>
+                    </div>
+                </div>
+
+				<footer style="margin: 10px 15px 0;height:30px">
+				</footer>
+
+			</div>
+			<!-- end widget content -->
+
+		</div>
+		<!-- end widget div -->
+
+	</div>
+	<!-- end widget -->
+
+</div>
+<!-- END COL -->
+
+</div>

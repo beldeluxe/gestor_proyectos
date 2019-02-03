@@ -1,0 +1,89 @@
+<?php echo $this->headScript()->appendFile('/admin/js/projects.js') ?>
+<?php
+$this->editUrl   = "/admin/alumnos/edit";
+$this->deleteUrl   = "/admin/mensajes/delete";
+?>
+<div>
+    <!-- NEW COL START -->
+    <div class="col-sm-12">
+
+        <div role="widget" class="jarviswidget" id="wid-id-0">
+
+            <!-- widget div-->
+            <div role="content">
+
+                <table id="enviados-index-table" class="msg table table-striped table-bordered dataTable no-footer hover" role="grid" style="width: 100%;" width="100%">
+                    <thead>
+                    <tr role="row">
+                        <th class="index-table-hd" width="5%"></th>
+                        <th class="index-table-hd" width="40%">Asunto</th>
+                        <th class="index-table-hd" width="20%">Destintario</th>
+                        <th class="index-table-hd" width="10%">Fecha</th>
+                        <th class="index-table-hd" width="5%">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->mensajes_enviados as $mensaje) {
+
+                        ?>
+                        <tr role="row">
+                            <td> <span class="widget-icon"> <i class="fa fa-envelope"></i> </span></td>
+
+                            <td><a title="Ver" href="/admin/mensajes/show/<?php echo $mensaje['id']; ?>">
+                                    <?php echo $this->escapeHtml($mensaje['asunto'])?></a></td>
+                            <td><?php echo $this->escapeHtml($mensaje['name']." ".$mensaje['lastname']);?></td>
+                            <td>
+                                <?php
+                                $originalDate =$mensaje['created_at'];
+                                $newDate = date("d-m-Y", strtotime($originalDate));
+                                echo $this->escapeHtml($newDate)?></td>
+
+                            <td style="text-align:center">
+
+                                <a title="Ver" href="/admin/alumnos/show/<?php echo $mensaje['id']; ?>">
+                                    <span class="<?php echo $this->iconFA('SHOW',false) ?>"></span>
+                                </a>
+                                &nbsp;|&nbsp;
+                                <a class="edit-action" title="Eliminar" href="#"
+                                   data-target-id="<?php echo $mensaje['id'] ?>"
+                                   data-action-url="<?php echo $this->deleteUrl ?>">
+                                    <span class="<?php echo $this->iconFA('DELETE',false) ?>"></span>
+                                </a>
+
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+
+</div>
+<script type="text/javascript">
+
+    $.indexTableSetup = function(){
+        $('.msg').DataTable({
+            "oLanguage": {
+                "sUrl": "/admin/spanish.json"
+            },
+            "bFilter": true,
+            "bPaginate": true,
+            "bInfo": false,
+            "aoColumns": [
+                { "bSortable": false },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+            ]
+        });
+    }
+
+</script>

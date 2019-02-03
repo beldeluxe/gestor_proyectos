@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><?php echo $this->escapeHtml($this->translate('Documentación pendiente de validación'))?></title>
+
+    <style>
+        table {  font-family: Helvetica, Arial, sans-serif; font-size: 12px; margin:0 auto;}
+        thead { font-size: 9px; background-color: #E33232;color: #ffffff;}
+        tbody {font-size:14px;color:#95a5a6}
+        td, th {padding:10px}
+        .table-mail{ margin: 0 auto }
+        @media only screen and (max-width: 650px) {
+            thead { font-size:4px; }
+        }
+    </style>
+
+</head>
+
+<table bgcolor="#F6F4F5" align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+
+    <tr>
+
+        <td bgcolor="#F6F4F5" width="100%" style="padding:10px 0;">
+
+            <table width="650" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" class="table-mail">
+
+                <tr>
+
+                    <td bgcolor="#F6F4F5" width="100%" style="padding:10px 0;">
+
+                        <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#ffffff" width="650px !important;">
+
+                            <tr style="line-height: 24px; padding: 10px 0px; display: table-cell;" bgcolor="#ffffff">
+                                <td width="650" style="padding:0px;" bgcolor="#ffffff">
+                                    <table width="650" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td align="left" width="250" height="40">
+                                                <img src="<?php echo $this->localUrl(); ?>/images/AF_FM_0915_White_.png" width="250" height="40" alt=""/>
+                                            </td>
+                                            <td align="left" width="400" height="40">
+                                                <img src="<?php echo $this->localUrl(); ?>/images/spacer.gif" width="400" height="40" alt=""/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="650" colspan="2" height="20" bgcolor="#ffffff"></td>
+                            </tr>
+
+                            <tr>
+                                <td width="650" colspan="2" style="color:#95a5a6;font-size:14px;padding:10px" bgcolor="#ffffff">
+                                    Se ha enviado documentación referente a una donación y está pendiente de validación. Por favor, entre a validarla en el siguiente enlace:
+                                    <a href="<?php echo $this->escapeHtml($this->urlValidacion) ?>"><?php echo $this->escapeHtml($this->urlValidacion) ?></a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="650" colspan="2" height="20" bgcolor="#ffffff"></td>
+                            </tr>
+                        </table>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>

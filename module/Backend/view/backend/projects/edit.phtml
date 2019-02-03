@@ -1,0 +1,116 @@
+<?php echo $this->headScript()->appendFile('/admin/js/projects.js') ?>
+
+<div class="row">
+
+<!-- NEW COL START -->
+<div class="col-sm-12">
+
+	<!-- Widget ID (each widget will need unique ID)-->
+	<div role="widget" class="jarviswidget" id="wid-id-0">
+		
+		<header role="heading" style="height:60px;padding:10px">
+
+			<span class="widget-icon"> <i class="fa fa-folder-o"></i> </span>
+			
+			<h2><strong>Edición de Proyectos</strong></h2>
+
+			<!--<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>-->
+
+			<button id="submit-project" onclick="submitForm()" class="pull-right btn btn-success" style="padding: 6px 12px;height:32px;" >
+				<i class="fa fa-check"></i> Guardar
+			</button>
+
+			<span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+            <a class="pull-right btn btn-default" href="/admin/projects" style="padding: 6px 12px;height:32px">
+				<i class="fa fa-times"></i> Volver
+			</a>
+
+		</header>
+
+		<!-- widget div-->
+		<div role="content">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+			<!-- widget content -->
+			<div class="widget-body-toolbar">
+
+                <section>
+                    <div class="row">
+                        <div class="input-file col col-4">
+                            <label for="name">Título del proyecto</label>
+                            <?php echo $this->formRow($form->get('name')); ?>
+                        </div>
+                        <div class="input-file col col-4">
+                            <label for="">Alumno</label>
+                            <?php
+                            if(!empty($this->alumno)){?>
+                                <p>
+                                    <?php echo $this->alumno[0]['name']." ".$this->alumno[0]['lastname'];?>
+                                    <input type="text" hidden name="id_alumn" value="<?php echo $this->alumno[0]['id_user']; ?>">
+                            </p>
+                           <?php } else {
+                                echo $this->formRow($form->get('id_alumn'));}?>
+
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="input-file col col-12">
+                            <label for="comments">Comentarios (opcional)</label>
+                            <p><?php echo $this->formRow($form->get('comments')); ?></p>
+
+                        </div>
+
+
+                    </div>
+                </section>
+                <section>
+                    <div class="row">
+                        <div class="input-file col col-8">
+                            <p>¿Ha presentado el alumno alguna documentación sobre el proyecto?</p>
+                            <label for="password_rep">Subir documentación del proyecto</label>
+                            <?php echo $this->formRow($form->get('documentation'));?>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+			<!-- end widget content -->
+            <?php echo $this->formRow( $form->get('csrf') ) ?>
+            <?php
+            echo $this->formElement($form->get('csrf'));
+            echo $this->form()->closeTag();
+            ?>
+		</div>
+		<!-- end widget div -->
+
+
+	</div>
+	<!-- end widget -->
+
+</div>
+<!-- END COL -->
+
+</div>
+
+
+<?php // JS PARA EL EDITOR tinymce ?>
+<script type="text/javascript" src="/admin/js/tinymce/tinymce.min.js"></script>
+
+<script type="application/javascript">
+
+    $(document).ready ( function() {
+
+
+        /* var estado = document.getElementById("state");
+         var estadoValue = estado.options[estado.selectedIndex].value;
+         cambiaEstado(estadoValue);*/
+    });
+</script>
+
+

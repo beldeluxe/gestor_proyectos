@@ -1,0 +1,74 @@
+<div class="row">
+
+    <!-- NEW COL START -->
+    <div class="col-sm-12">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div role="widget" class="jarviswidget" id="wid-id-0">
+
+            <header role="heading" style="height:60px;padding:10px">
+
+                <span class="widget-icon"> <i class="fa fa-envelope-o"></i> </span>
+
+                <h2><strong>Mensaje </strong></h2>
+
+                <span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+                    <?php if($this->destinatario['id_user'] == $_SESSION['admin_session']['adminId']) {?>
+                        <a class="pull-right btn btn-success" href="<?php echo "/admin/mensajes/new/"?><?php echo $this->remitente['id_user']; ?>">
+                            <i class="fa fa-plus"></i> Responder
+                        </a>
+                    <?php } ?>
+                <span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+                <a  class="pull-right btn btn-default" href="/admin/mensajes" style="padding: 6px 12px;height:32px">
+                    <i class="fa fa-times"></i> Volver
+                </a>
+
+
+            </header>
+
+            <!-- widget div-->
+            <div role="content" class="mensaje">
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+
+                    <div class="tab-content datos_mensaje">
+                        <div class="col-md-4">
+                            <p>De: <?php echo $this->remitente['name']." ".$this->remitente['lastname']?></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Para: <?php echo $this->destinatario['name']." ".$this->destinatario['lastname']?></p>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="mensaje_content">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3><?php echo $this->mensaje['asunto']?></h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <?php echo $this->mensaje['comments']?>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <footer style="margin: 10px 15px 0;height:30px">
+                    </footer>
+
+                </div>
+                <!-- end widget content -->
+
+            </div>
+            <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+
+    </div>
+    <!-- END COL -->
+
+</div>

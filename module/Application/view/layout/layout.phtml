@@ -1,0 +1,168 @@
+<?php echo $this->doctype(); ?>
+<html lang="ES">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+        <!-- FAVICONS -->
+        <link rel="shortcut icon" href="/img/favi.png" type="image/x-icon">
+        <link rel="icon" href="/img/favi.png" type="image/x-icon">
+
+    <?php if (!empty($this->metaTags['title'])) { ?>
+        <title><?php echo $this->escapeHtml($this->metaTags['title']) ?> - <?php echo $this->translate('Gestor de Proyectos - Belen'); ?></title>
+    <?php } else { ?>
+        <title><?php echo $this->translate('Gestor de Proyectos'); ?></title>
+    <?php } ?>
+
+        <?php if (!empty($this->metaTags['NOFOLLOW'])) {?>
+        
+            <META name="robots" content="NOINDEX,NOFOLLOW">
+        
+        <?php } elseif (!empty($this->metaTags['title'])) { ?>
+
+            <meta name="title" content="<?php echo $this->escapeHtml($this->metaTags['title']) ?>">
+
+            <?php if (!empty($this->metaTags['description'])) { ?><meta name="description" content="<?php echo $this->escapeHtml($this->metaTags['description']) ?>"><?php } ?>
+
+            <?php if (!empty($this->metaTags['keywords'])) { ?><meta name="keywords" content="<?php echo $this->escapeHtml($this->metaTags['keywords']) ?>"><?php } ?>
+
+            <?php if (!empty($this->metaTags['title'])) { ?><meta name="author" content="<?php echo $this->escapeHtml($this->metaTags['author']) ?>"><?php } ?>
+
+            <?php if (!empty($this->metaTags['canonical'])) { ?><link rel="canonical" href="<?php echo $this->escapeHtml($this->metaTags['canonical']) ?>" /><?php } ?>
+
+            <?php if (!empty($this->metaTags['next'])) { ?><link rel="next" href="<?php echo $this->escapeHtml($this->metaTags['next']) ?>" /><?php } ?>
+
+            <?php if (!empty($this->metaTags['prev'])) { ?><link rel="prev" href="<?php echo $this->escapeHtml($this->metaTags['prev']) ?>" /><?php } ?>
+
+            <meta property="og:locale"        content="es-ES" />
+            <meta property="og:title"         content="<?php echo $this->escapeHtml($this->metaTags['title']) ?>" />
+            <?php if (!empty($this->metaTags['description'])) { ?><meta property="og:description"   content="<?php echo $this->escapeHtml($this->metaTags['description']) ?>" /><?php } ?>
+
+            <meta property="og:site_name"     content="Gestor de PRoyectos" />
+            <meta property="og:type"          content="website" />
+            <meta property="og:image"         content="/img/favi.png" />
+            <?php if (!empty($this->metaTags['canonical'])) { ?><meta property="og:url"  content="<?php echo $this->escapeHtml($this->metaTags['canonical']) ?>" /><?php } ?>
+
+
+
+        <?php } ?>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link href="/assets/stylesheets/dependencies/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/dependencies/dropzone.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/dependencies/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/all.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/pagination.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/stylesheets/stylecookies.css" media="screen" rel="stylesheet" type="text/css">
+
+        <link href="" rel="shortcut icon" type="image/x-icon">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="/assets/javascripts/dependencies/html5shiv.min.js" type="text/javascript"></script>
+          <script src="/assets/javascripts/dependencies/respond.min.js" type="text/javascript"></script>
+        <![endif]-->
+        <!--[if IE 8]>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"></script>
+        <![endif]-->
+
+
+    </head>
+
+    <body class="<?php echo $this->bodyClass; ?>">
+
+        <?php echo $this->header;?>
+
+        <div id="main-content">
+
+            <?php echo $this->content; ?>
+
+        </div> <!-- main-content -->
+
+        <?php echo $this->footer; ?>
+
+        <!--<script src="/js/dependencies/bootstrap.min.js" type="text/javascript"></script>-->
+        <!--<script src="/js/dependencies/fb.js" type="text/javascript"></script>-->
+        <script src="/assets/javascripts/dependencies/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="/assets/javascripts/dependencies/placeholders.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.flexslider.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/selectize.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/masonry.pkgd.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.colorbox.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/jquery.validate.min.js"></script>
+        <script src="/assets/javascripts/dependencies/dropzone.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/cookies.min.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/cookies.cdata.js" type="text/javascript"></script>
+        <script src="/assets/javascripts/dependencies/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+
+        <!--<script src="/assets/javascripts/dependencies/bootstrap-modal.js" type="text/javascript"></script>-->
+        <script src="/assets/javascripts/all.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+            $(document).ready(function() {
+
+                $(".WarningDialog").on('click', function (e) {
+
+                    e.preventDefault();
+
+                    var tgtDiv   = $( "#" + $(this).data('target') );
+
+                    if (!tgtDiv) return;
+
+                    tgtDiv.dialog({
+                        resizable: false,
+                        title: tgtDiv.data('title'),
+                        height:300,
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            'Aceptar': function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+
+                    tgtDiv.show();
+
+                });
+
+                $(".UrlConfirmDialog").on('click', function (e) {
+
+                    e.preventDefault();
+
+                    var tgtDiv   = $( "#" + $(this).data('target') );
+
+                    if (!tgtDiv) return;
+
+                    tgtDiv.dialog({
+                        resizable: false,
+                        title: tgtDiv.data('title'),
+                        height:300,
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            'SÍ': function() {
+                                $(this).dialog("close");
+                                window.location = $(this).data('url');
+                            },
+                            'NO':  function() {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+
+                    tgtDiv.show();
+
+                });
+
+            });
+        </script>
+
+        <?php echo $this->javascript; ?>
+
+    </body>
+    
+</html>

@@ -1,0 +1,205 @@
+<?php // JS PARA EL EDITOR tinymce ?>
+<script type="text/javascript" src="/admin/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "#contentTextArea",
+        language : 'es',
+        content_css: "/admin/css/pages.css",
+        style_formats: [
+            {title: 'Bold text', inline: 'b'},
+            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+            {title: 'Example 1', inline: 'span', classes: 'example1'},
+            {title: 'Example 2', inline: 'span', classes: 'example2'},
+            {title: 'Table styles'},
+            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+        ],
+        plugins: [
+            "advlist autolink lists link image charmap preview anchor",
+            "searchreplace visualblocks code",
+            "insertdatetime media table contextmenu paste"
+        ]
+    });
+
+
+</script>
+<script type="text/javascript">
+    var SESSION_TOKEN = <?php echo "'".$this->sessionToken."'"?>;
+    var selectedRows = []; // Array para guardar los IDs de las filas seleccionadas.
+
+    function isIE () {
+        var myNav = navigator.userAgent.toLowerCase();
+        return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    }
+
+    $(document).ready( function() {
+
+        // TABLA INDEX => ACCIONES INDEX:
+
+        // Si hay definido un setup para una tabla, invoca la función
+        if ($.indexTableSetup) {
+            $.indexTableSetup();
+        }
+
+        // Botones de header => sort action
+        $(".index-table-hd").on('click', function (e) {
+            // sorting / sorting_desc ==> sorting_asc
+            if ( $(this).hasClass('sorting') || $(this).hasClass('sorting_desc') ) {
+                console.log('Ahora es sorting_asc');
+            }
+
+            // sorting_asc => sorting_desc
+            if ( $(this).hasClass('sorting_asc') ) {
+                console.log('Ahora es sorting_desc');
+            }
+        });
+
+        <?php // BOTONES ACCIONES BÁSICAS EN TABLAS Y DIALOGOS MODALES ?>
+
+        var CONFIRM_MODAL_FUNCTION;
+
+        function showConfirmModal( strTitle, strBody, confirmFunction ) {
+            $('#confirm-modal-title').text(strTitle);
+            $('#confirm-modal-body').text(strBody);
+            $('#confirm-modal-dialog').modal('show');
+            CONFIRM_MODAL_FUNCTION = confirmFunction;
+        }
+
+        $("#confirm-modal-button").on('click', function (e) {
+            CONFIRM_MODAL_FUNCTION();
+        });
+
+        $(".toggle-action").on('click', function (e) {
+
+            e.preventDefault();
+
+            var tgtId = $(this).data('target-id');
+            var url = $(this).data('action-url');
+
+            var targetIcon = '#' + $(this).data('target-icon-id');
+            var activeIconClass   = $(this).data('active-class');
+            var inactiveIconClass = $(this).data('inactive-class');
+
+            $.ajax({
+                url: url + "/" + tgtId + "?token=" + SESSION_TOKEN
+            }).done( function( msg ) {
+                if( msg.success ) {
+                    $(targetIcon).toggleClass(activeIconClass);
+                    $(targetIcon).toggleClass(inactiveIconClass);
+                }
+            });  
+
+        });
+
+        $(".edit-action").on('click', function (e) {
+
+            e.preventDefault();
+
+            var tgtId = $(this).data('target-id');
+            var url = $(this).data('action-url');
+
+            window.location = url + "/" + tgtId;
+
+        });
+
+        $(".delete-action").on('click', function (e) {
+
+            e.preventDefault();
+
+            var tgtId = $(this).data('target-id');
+            var url = $(this).data('action-url');
+
+            var searchDateFrom = $(this).data('search-datefrom');
+            var searchDateEnd = $(this).data('search-dateend');
+            var searchName = $(this).data('search-name');
+            var searchProjectId = $(this).data('search-projectid');
+            var searchLanguage = $(this).data('search-language');
+            var searchCountry = $(this).data('search-country');
+            var searchPartner = $(this).data('search-partner');
+            var searchSource = $(this).data('search-source');
+
+
+            showConfirmModal( 'Borrar Elemento', 'Por favor, confirme la eliminación del elemento', function (e) {
+                window.location = url + "/" + tgtId + "?token=" + SESSION_TOKEN +
+                    "&searchDateFrom="+searchDateFrom +
+                    "&searchDateEnd="+searchDateEnd +
+                    "&searchName="+searchName +
+                    "&searchProjectId="+searchProjectId +
+                    "&searchLanguage="+searchLanguage +
+                    "&searchCountry="+searchCountry +
+                    "&searchPartner="+searchPartner+
+                    "&searchSource="+searchSource ;
+            } );
+
+        });
+
+        $(".delete-profe-action").on('click', function (e) {
+
+            e.preventDefault();
+
+
+
+            var tgtId = $(this).data('target-id');
+            var url = $(this).data('action-url');
+
+
+
+
+            showConfirmModal( 'Borrar Elemento', 'Se va a producir el borrado de un profesor, si el profesor tiene alumnos en tutoría el sistema te los asignara a tí para que puedas gestionarlo, ¿desea continuar?', function (e) {
+                window.location = url + "/" + tgtId + "?token=";
+            } );
+
+        });
+
+
+        $(".delete-mensaje-action").on('click', function (e) {
+
+            e.preventDefault();
+
+
+
+            var tgtId = $(this).data('target-id');
+            var url = $(this).data('action-url');
+
+
+
+            showConfirmModal( 'Borrar Elemento', 'El mensaje será eliminado ¿desea continuar?', function (e) {
+                window.location = url + tgtId;
+            } );
+
+        });
+
+
+
+
+        $(".deleteSelected-action").on('click', function (e) {
+
+            e.preventDefault();
+
+            var elementsSelectString = "";
+            for (var i = 0; i < selectedRows.length; i++) {
+                if (elementsSelectString == "") elementsSelectString = selectedRows[i];
+                else elementsSelectString = elementsSelectString + "-" + selectedRows[i];
+            }
+
+            var url = $(this).data('action-url');
+
+            if (elementsSelectString!="") {
+                showConfirmModal('Borrar Elementos', 'Por favor, confirme la eliminación de todos los elementos', function (e) {
+                    window.location = url + '/?selected=' + elementsSelectString + "&token=" + SESSION_TOKEN;
+                });
+            }
+
+        });
+
+        <?php // PAGINADOR ?>
+
+        $(".paginator-page-btn").on('click', function (e) {
+            e.preventDefault();
+            window.location = $(this).data('url') + "?pag=" + $(this).data('page') + "&limit=" + $(this).data('limit') + "&token=" + SESSION_TOKEN;
+        });
+
+    });
+
+</script>
+<?php echo $this->viewJSVM ?>

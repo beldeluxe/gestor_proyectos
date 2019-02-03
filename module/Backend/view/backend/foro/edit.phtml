@@ -1,0 +1,134 @@
+<div class="row">
+
+<!-- NEW COL START -->
+<div class="col-sm-12">
+
+	<!-- Widget ID (each widget will need unique ID)-->
+	<div role="widget" class="jarviswidget" id="wid-id-0">
+		
+		<header role="heading" style="height:60px;padding:10px">
+
+			<span class="widget-icon"> <i class="fa fa-user"></i> </span>
+			
+			<h2><strong>Noticias</strong></h2>
+
+			<button id="edit-form-submit" type="" class="pull-right btn btn-success" style="padding: 6px 12px;height:32px;" >
+				<i class="fa fa-check"></i> Guardar
+			</button>
+			<span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+			<button type="button" class="pull-right btn btn-default" onclick="window.history.back();" style="padding: 6px 12px;height:32px">
+				<i class="fa fa-times"></i> Volver
+			</button>
+
+		</header>
+
+		<!-- widget div-->
+		<div role="content">
+
+			<!-- widget content -->
+			<div class="widget-body no-padding">
+
+				<div class="widget-body-toolbar">
+
+                    <?php
+                    $form = $this->form;
+                    $form->prepare();
+                    echo $this->form()->openTag($form);
+                    ?>
+
+					<fieldset style="margin: 10px 14px 0;">
+
+						<div class="row">
+
+			                <div class="col col-md-6">
+			                    <label class="label">
+			                        Título
+                                </label>
+			                    <label class="input">
+			                        <?php echo $this->formRow($form->get('title')); ?>
+			                    </label>
+			                </div>
+		                </div>
+                        <div class="row">
+
+                            <div class="col col-md-10">
+                                <label class="label">
+                                    Resumen/Entrada
+                                </label>
+                                <label class="input">
+                                    <?php echo $this->formRow($form->get('excerpt')); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col col-md-10">
+                                <label class="label">
+                                    Contenido
+                                </label>
+                                <label class="input">
+                                    <?php echo $this->formRow($form->get('comments')); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col col-md-10">
+                                <label class="label">
+                                    Imagen principal
+                                </label>
+                                <label class="input">
+                                    <?php echo $this->formRow($form->get('mediafile')); ?>
+                                </label>
+                            </div>
+                        </div>
+
+					</fieldset>
+
+                    <?php echo $this->formRow( $form->get('csrf') ) ?>
+                    <?php
+                    echo $this->formElement($form->get('csrf'));
+                    echo $this->form()->closeTag();
+                    ?>
+
+				</div>
+
+				<footer style="margin: 10px 15px 0;height:30px">
+				</footer>
+
+			</div>
+			<!-- end widget content -->
+
+		</div>
+		<!-- end widget div -->
+
+	</div>
+	<!-- end widget -->
+
+</div>
+<!-- END COL -->
+
+
+
+</div>
+<script type="text/javascript" src="/admin/js/tinymce/tinymce.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        init_editors();
+
+
+        $("#edit-form-submit").on('click', function () {
+
+            $("#noticiaForm").submit();
+
+            /*if ($("#source-form").valid()) {
+
+           }*/
+
+        });
+
+    });
+
+</script>

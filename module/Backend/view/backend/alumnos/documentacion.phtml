@@ -1,0 +1,70 @@
+<?php use Model\BusinessModel\Usuarios; ?>
+<div class="row">
+
+    <!-- NEW COL START -->
+    <div class="col-sm-12">
+
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div role="widget" class="jarviswidget" id="wid-id-0">
+
+            <header role="heading" style="height:60px;padding:10px">
+
+                <span class="widget-icon"> <i class="fa fa-user"></i> </span>
+
+                <h2><strong>Subir documentación</strong></h2>
+
+                <span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+                <button  class="pull-right btn btn-success" onclick="submitDocumentationFormUser();" style="padding: 6px 12px; height:32px">
+                    <i class="fa fa-times"></i> Guardar
+                </button>
+                <span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+                <a  class="pull-right btn btn-default" href="/admin/alumnos" style="padding: 6px 12px;height:32px">
+                    <i class="fa fa-times"></i> Volver
+                </a>
+            </header>
+
+            <!-- widget div-->
+            <div role="content">
+
+                <!-- widget content -->
+                <div class="widget-body no-padding">
+
+                    <div class="widget-body-toolbar">
+                        <fieldset style="margin: 10px 14px 0;">
+
+                            <?php
+                            $form = $this->form;
+                            $form->prepare();
+                            echo $this->form()->openTag($form);
+                            ?>
+
+
+                                <section class="col col-8">
+                                    <p><?php echo $this->translate("Subir documentacion:")?>
+                                    <div class="input-file">
+                                        <?php echo $this->formRow($form->get('documentation')); ?>
+                                    </div>
+                                    </p>
+                                </section>
+
+                            <?php
+                            echo $this->formElement($form->get('csrf'));
+                            echo $this->form()->closeTag();
+                            ?>
+                        </fieldset>
+
+                        <!--</form>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function submitDocumentationFormUser(){
+
+        $("#doc-form").submit();
+
+    }
+</script>

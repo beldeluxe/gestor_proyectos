@@ -1,0 +1,109 @@
+<header id="header" style="background-color: #333">
+
+    <div id="logo-group" style="margin-top: -9px; margin-left: 10px;">
+        <span id="logo"> <a target="_blank" href=""><img src="/img/logo_noodle.png" alt="LOGO"></a></span>
+    </div>
+
+    <div class="pull-left">
+        <span class="label" style="font-size: larger;color: #333;"><br>Gestión de proyectos</span>
+    </div>
+
+    <!-- pulled right: nav area -->
+    <div class="pull-right">
+
+        <div class="btn-header transparent pull-right" style="padding-right:20px">
+            <span> <a id="log-out-button" title="Sign Out"><i class="fa fa-sign-out"></i></a></span>
+        </div>
+        <!-- end logout button -->
+
+    </div>
+    <!-- end pulled right: nav area -->
+</header>
+
+<!-- NAVIGATION -->
+<aside id="left-panel">
+    <div class="login-info">
+        <span style="border-width:0">
+            <i class="fa fa-user"></i>
+            <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_SUPERADMIN || $_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_PROFESOR){ ?>
+
+            <a href="/admin/profesors/show/<?php echo $_SESSION['admin_session']['adminId'];?>" id="" style="text-transform: none;">&nbsp;<?php
+                echo $this->loginName ?></a> </span>
+        <?php } else {?>
+            <a href="/admin/alumnos/show/<?php echo $_SESSION['admin_session']['adminId'];?>" id="" style="text-transform: none;">&nbsp;<?php
+                echo $this->loginName ?></a> </span>
+        <?php } ?>
+
+    </div>
+    <nav>
+        <ul>
+
+            <li id="projects" class="<?php if ($this->activeMenuId == 1) echo 'active'; ?>">
+                <a href="/admin/projects" id="menuSelId1">
+                    <i class="fa fa-lg fa-fw fa-folder"></i>
+                    <span class="menu-item-parent">Proyectos</span>
+                </a>
+            <li>
+
+
+            <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_SUPERADMIN || $_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_PROFESOR){ ?>
+
+            <li id="users" class="<?php if ($this->activeMenuId == 4) echo 'active'; ?>">
+                <a href="/admin/alumnos" id="menuSelId4">
+                    <i class="fa fa-lg fa-fw fa-user"></i>
+                    <span class="menu-item-parent">Alumnos</span>
+                </a>
+            <li>
+            <?php } ?>
+
+            <li id="admins" class="<?php if ($this->activeMenuId == 7) echo 'active'; ?>">
+                <a href="/admin/profesors" id="menuSelId7">
+                    <i class="fa fa-lg fa-fw fa-user"></i>
+                    <span class="menu-item-parent">Profesores</span>
+                </a>
+            <li>
+
+
+            <li id="sources" class="<?php if ($this->activeMenuId == 8) echo 'active'; ?>">
+                <a href="/admin/foro" id="menuSelId8">
+                    <i class="fa fa-lg fa-fw fa-tags"></i>
+                    <span class="menu-item-parent">Noticias</span>
+                </a>
+            <li>
+
+            <li id="mensajes" class="<?php if ($this->activeMenuId == 11) echo 'active'; ?>">
+                <a href="/admin/mensajes" id="menuSelId11">
+                    <i class="fa fa-lg fa-fw fa-download"></i>
+                    <span class="menu-item-parent">Mensajes</span>
+                </a>
+            <li>
+
+            <!--<li id="configs" class="<?php if ($this->activeMenuId == 9) echo 'active'; ?>">
+                <a href="/admin/configtext" id="menuSelId9">
+                    <i class="fa fa-lg fa-fw fa-gear"></i>
+                    <span class="menu-item-parent">Configuración</span>
+                </a>
+            <li>-->
+            <?php if ($_SESSION['admin_session']['role'] == \Model\BusinessModel\Usuario::ROL_SUPERADMIN ){ ?>
+
+            <li id="logger" class="<?php if ($this->activeMenuId == 10) echo 'active'; ?>">
+                <li><a>
+                    <i class="fa fa-lg fa-fw fa-gear"></i>
+                    <span class="menu-item-parent">Logs</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/admin/logger" id="">
+                                <span class="menu-item-parent">Log auditoría cambios</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </li>
+        <?php } ?>
+
+
+        </ul>
+    </nav>
+</aside>

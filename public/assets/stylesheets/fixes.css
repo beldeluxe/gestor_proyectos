@@ -1,0 +1,55 @@
+.row.radio {
+    margin-top: 25px;
+}
+.p-domiciliation-group {
+    margin-top: 20px;
+}
+
+.footer a {
+    font-size: 13px !important;
+}
+
+#myamount{
+    padding-top: 16px;
+}
+
+.text_cantidad{
+    padding-bottom: 1px;
+    margin-right: -80px;
+}
+
+p.grey.text_cantidad {
+    color: #7C7978 !important;
+}
+
+.box .col-xs-12.last p.mbs {
+    margin-right: -80px !important;
+}
+
+.type_donation{
+    margin-right: 20px;
+    font-size: 18px;
+    line-height: 15px;
+    width: 37%;
+}
+
+.table-lopd .p-lopd {
+    font-size: 12px;
+    margin-bottom:14px;
+}
+
+.table-lopd {
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.th-lopd {
+    text-align:left;
+    text-decoration:underline;
+    padding: 10px;
+}
+
+.td-lopd {
+    padding: 10px;
+}

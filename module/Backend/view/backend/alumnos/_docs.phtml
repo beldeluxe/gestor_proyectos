@@ -1,0 +1,42 @@
+<?php
+
+$this->deleteUrl  = "/admin/alumnos/deleteDocs";
+
+?>
+<div id="details_tab">
+    <div class="widget-body-toolbar">
+        <table id="alumnos-index-table" class="table table-striped table-bordered dataTable no-footer hover" role="grid" style="width: 100%;" width="100%">
+            <thead>
+            <tr role="row">
+                <th class="index-table-hd" width="50%">Nombre de archivo</th>
+                <th class="index-table-hd" width="20%">Fecha de subida</th>
+                <th class="index-table-hd" width="10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->documentation as $doc) {
+
+                ?>
+                <tr role="row">
+                    <td><a class="download-link" target="_blank" href="<?php echo $this->localUrl().substr($this->escapeHtml($doc['filename']),6)?>"><?php echo $this->escapeHtml($doc['description'])?></a></td>
+                    <td><?php echo $this->escapeHtml($doc['created_at']);?></td>
+
+
+                    <td style="text-align:center">
+                        <a class="delete-action" title="Eliminar" href="#"
+                           data-target-id="<?php echo $doc['id_documentation'] ?>"
+                           data-action-url="<?php echo $this->deleteUrl ?>">
+                            <span class="<?php echo $this->iconFA('DELETE',false) ?>"></span>
+                        </a>
+
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<?php use Model\CommonContentsModel\AdminLoginRequest;
+use Zend\View\Model\ViewModel;
+echo $this->doctype(); ?>
+<html lang="es-es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <META name="robots" content="NOINDEX,NOFOLLOW">
+
+    <title> Gestor de Proyectos </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-production_unminified.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/fixes.css">
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="/img/favi.png" type="image/x-icon">
+    <link rel="icon" href="/img/favi.png" type="image/x-icon">
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" type="text/css"  href="/admin/css/roboto_font.css"/>
+
+    <!--[if (gte IE 9) | (!IE)]><!-->
+    <script src="/admin/js/libs/jquery-2.2.1.min.js"></script>
+    <!--<![endif]-->
+
+    <link href="/admin/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="">
+
+
+<?php echo $this->header; ?>
+
+<?php echo $this->ribbon;?>
+
+<div id="main" role="main"><!-- MAIN PANEL -->
+
+    <div id="content"><!-- MAIN CONTENT -->
+
+        <div id="confirm-modal-dialog" class="modal fade modal-dialog" style="height:40px;width:200px;overflow: visible;position:fixed;top: 150px;left: -50px;">
+            <div class="modal-content" style="width:400px">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="confirm-modal-title" class="modal-title"></h4>
+              </div>
+              <div class="modal-body">
+                <p  id="confirm-modal-body" class="title-m"></p>
+              </div>
+              <div class="modal-footer">
+                    <button id="confirm-modal-button" type="button" class="btn btn-primary btn-perfil-ganador">Confirmar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+        </div>
+
+        <div id="term-select-modal-dialog" class="modal fade modal-dialog" style="position:fixed;top: 100px;left: -100px;
+        width:600px;height:600px;overflow: hidden;">
+            <div class="modal-content" style="width:550px;">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="term-select-modal-title" class="modal-title"></h4>
+                <br>
+                <div class="">
+                    <div class="row" style="padding-right:10px">
+                        <div class="col-xs-6">
+                            <input id="term-search-input" type="text" name="search_string" placeholder="texto" style="border-radius: 4px; height: 29px;" value="">
+                        </div>
+                        <div class="col-xs-6" style="text-align:right">
+                            <div class="btn-group">
+                                <a id="term-search-btn" class="btn btn-primary" href="#">BUSCAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+              <div class="modal-body" style="height:400px;overflow: scroll;">
+                <p  id="term-select-modal-body" class="title-m"></p>
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+        </div>
+
+        <div id="content-select-modal-dialog" class="modal fade modal-dialog" style="position:fixed;top: 100px;left: -100px;
+        width:600px;height:600px;overflow: hidden;">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="content-select-modal-title" class="modal-title"></h4>
+                    <br>
+                    <div class="">
+
+                    </div>
+                </div>
+                <div class="modal-body" style="height:400px;overflow: scroll;">
+                    <p  id="content-select-modal-body" class="title-m">Por favor, confirme la eliminación del contenido.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dialog-confirm"></div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                    <?php
+                    $this->flashMessenger()
+                        ->setMessageOpenFormat('<div%s><a class="flash-message" style="text-decoration:none;cursor:pointer;color:white"><i class="fa fa-lg fa-times" style="padding-right:5px"></i><b>')
+                        ->setMessageSeparatorString('</b><b>')->setMessageCloseString('</b></a></div>');
+                    echo $this->flashMessenger()->renderCurrent('error',   array('alert', 'alert-danger'));
+                    echo $this->flashMessenger()->renderCurrent('success', array('alert', 'alert-success'));
+                    echo $this->flashMessenger()->renderCurrent('default', array('alert', 'alert-info'));
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('default');
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('success');
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('error');
+                    ?>
+            </div>
+        </div>
+
+        <?php echo $this->content; ?>
+
+    </div><!-- END MAIN CONTENT -->
+
+</div><!-- END MAIN PANEL -->
+<?php
+echo $this->footer;
+?>
+
+<!-- BOOTSTRAP JS -->
+<script src="/admin/js/bootstrap/bootstrap.min.js"></script>
+<!-- JQUERY SELECT2 INPUT -->
+<script src="/admin/js/plugin/select2/select2.min.js"></script>
+<!-- BROWSER MSIE ISSUE FIX -->
+<script src="/admin/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+<!--[if IE 7]>
+<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+<![endif]-->
+<!-- PAGE RELATED PLUGIN(S) -->
+<script src="/admin/js/libs/dropzone.js"></script>
+
+<script src="/admin/js/plugin/datatables/jquery.dataTables-cust.min.js"></script>
+<script src="/admin/js/plugin/datatables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="/admin/js/all.js"></script>
+<script type="text/javascript" src="/admin/js/app.js"></script>
+<script type="text/javascript" src="/admin/js/general.js"></script>
+<script src="/admin/js/libs/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="/admin/js/libs/jquery.colorbox.js"></script>
+<script src="/admin/js/backend-fixes.js" type="text/javascript"></script>
+<script src="/admin/js/bootstrap/bootstrap-datepicker.js"></script>
+<script src="/admin/js/bootstrap/bootstrap-datepicker-es.js"></script>
+<script src="/admin/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+<script src="/admin/js/validator-fixes.js"></script>
+<script src="/admin/js/jquery.validate.translations.js"></script>
+
+<!--<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>-->
+
+<script type="text/javascript">
+
+    function logoutDialog() {
+        $("#dialog-confirm").html("<h3>Confirme que quiere salir y terminar la sesión</h3>");
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            modal:     true,
+            title: "Salir",
+            height: 250,
+            width: 600,
+            buttons: {
+                "Sí": function () {
+                    $(this).dialog('close');
+                    window.location.href = "/mpfnimda/logout";
+                },
+                "No":
+                    function () {
+                        $(this).dialog('close');
+                }
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $.allJs();
+        $.appReady();
+
+        $("a.flash-message").on("click", function(e){
+            e.preventDefault();
+            $(this).parent().remove();
+        });
+
+        $( "#log-out-button").on("click", function(e) {
+            e.preventDefault();
+            logoutDialog();
+        });
+
+        var ID_BOT_MENU_ACTIVO = <?php echo "'#".$this->activeMenuId."'" ?> ;
+
+        $(ID_BOT_MENU_ACTIVO).addClass("active");
+
+    });
+    var rad = document.myForm.gender;
+    var prev = null;
+    for(var i = 0; i < rad.length; i++) {
+        rad[i].addEventListener('change', function() {
+            (prev)? console.log(prev.value):null;
+            if(this !== prev) {
+                prev = this;
+
+                if (this.value == 'dark'){
+                    $('#left-panel').attr('class', 'dark');
+                }
+                if (this.value == 'happy'){
+                    $('#left-panel').attr('class', 'happy');
+                }
+                if (this.value == 'blue'){
+                    $('#left-panel').attr('class', 'blue');
+                }
+            }
+        });
+    }
+
+</script>
+<?php echo $this->javascript; ?>
+</body>
+</html>

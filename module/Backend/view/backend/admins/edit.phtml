@@ -1,0 +1,97 @@
+<div class="row">
+
+<!-- NEW COL START -->
+<div class="col-sm-12">
+
+	<!-- Widget ID (each widget will need unique ID)-->
+	<div role="widget" class="jarviswidget" id="wid-id-0">
+		
+		<header role="heading" style="height:60px;padding:10px">
+
+			<span class="widget-icon"> <i class="fa fa-user"></i> </span>
+			
+			<h2><strong>Usuario</strong></h2>
+
+			<button id="edit-form-submit" type="" class="pull-right btn btn-success" style="padding: 6px 12px;height:32px;" >
+				<i class="fa fa-check"></i> Guardar
+			</button>
+			<span class="pull-right">&nbsp;&nbsp;&nbsp;</span>
+			<button type="button" class="pull-right btn btn-default" onclick="window.history.back();" style="padding: 6px 12px;height:32px">
+				<i class="fa fa-times"></i> Volver
+			</button>
+
+		</header>
+
+		<!-- widget div-->
+		<div role="content">
+
+
+			<!-- widget content -->
+			<div class="widget-body no-padding">
+				<div class="widget-body-toolbar">
+					<fieldset style="margin: 10px 14px 0;">
+
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                        ?>
+
+                        <div class="row">
+
+                            <div class="input-file col col-4">
+                                <label for="name">Nombre</label>
+                                <?php echo $this->formRow($form->get('name')); ?>
+                            </div>
+                            <div class="input-file col col-4">
+                                <label for="Apellidos">Apellidos</label>
+                                <?php echo $this->formRow($form->get('lastname')); ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-file col col-4">
+                                <label for="dni">Dni</label>
+                                <?php echo $this->formRow($form->get('dni')); ?>
+                            </div>
+                            <div class="input-file col col-4">
+                                <label for="email">Email</label>
+                                <?php echo $this->formRow($form->get('email')); ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-file col col-4">
+                                <label for="password">Contraseña</label>
+                                <?php echo $this->formRow($form->get('password')); ?>
+                            </div>
+                            <div class="input-file col col-4">
+                                <label for="password_rep">Repetir contraseña</label>
+                                <?php echo $this->formRow($form->get('password_rep'));?>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-file col col-4">
+                                <?php echo $this->formRow($form->get('rol'));?>
+
+                            </div>
+                        </div>
+
+                        <?php
+                        echo $this->formElement($form->get('csrf'));
+                        echo $this->form()->closeTag();
+                        ?>
+					</fieldset>
+				</div>
+			</div>
+
+			<!-- end widget content -->
+		</div>
+		<!-- end widget div -->
+	</div>
+	<!-- end widget -->
+</div>
+<!-- END COL -->
+
+
+
+</div>

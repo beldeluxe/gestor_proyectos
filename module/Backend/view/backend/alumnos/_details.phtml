@@ -1,0 +1,36 @@
+<div id="details_tab">
+    <div class="widget-body-toolbar">
+
+        <fieldset style="margin: 10px 14px 0;">
+            <div class="row">
+                <section class="col col-md-12">
+                    <p><?php echo $this->translate("Alumno")?>: <?php echo $this->alumno['name'].' '.$this->alumno['lastname']; ?></p>
+                </section>
+            </div>
+            <div class="row">
+                <div class="col col-md-4">
+                    <p><?php echo $this->translate("Email")?>: <?php echo $this->alumno['email']; ?></p>
+                </div>
+                <div class="col col-md-4">
+                    <p><?php echo $this->translate("DNI")?>: <?php echo $this->alumno['dni']; ?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-4">
+                    <p><?php echo $this->translate("Curso") ?>: <?php echo $this->alumno['course']; ?></p>
+                </div>
+                <section class="col col-md-8">
+                    <p><?php echo $this->translate("Tutor")?>: <?php echo $this->tutor[0]['name'].' '.$this->tutor[0]['lastname']; ?></p>
+                </section>
+            </div>
+            <div class="row">
+                    <div class="col col-md-8">
+                        <p><?php echo $this->translate("Título proyecto")?>: <?php if(empty($this->proyecto)){echo 'El alumno no tiene registrado un proyecto aún';}else{echo $this->proyecto['name']; } ?></p>
+
+                    </div>
+                </div>
+
+        </fieldset>
+
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<?php
+$this->newUrl   = "/admin/mensajes/new";
+?>
+<div>
+    <!-- NEW COL START -->
+    <div class="col-sm-12">
+
+        <div role="widget" class="jarviswidget" id="wid-id-0">
+
+            <header role="heading" style="height:60px;padding:10px;" >
+
+                <span class="widget-icon"> <i class="fa fa-envelope"></i> </span>
+
+                <h2>Mensajes</h2>
+
+                <div class="pull-right">
+                    <a class="btn btn-success" href="<?php echo $this->newUrl ?>">
+                        <i class="fa fa-plus"></i> Nuevo Mensaje
+                    </a>
+                </div>
+
+            </header>
+            <div class="row">
+
+                <!-- NEW COL START -->
+                <div class="col-sm-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div role="widget" class="jarviswidget" id="wid-id-0">
+
+                        <header role="heading" style="height:60px;padding:10px">
+
+                            <span class="widget-icon"> <i class="fa fa-envelope"></i> </span>
+
+                            <h2><strong>Mensajes</strong></h2>
+
+
+                        </header>
+
+                        <!-- widget div-->
+                        <div role="content">
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#detalle">Mensajes Recibidos</a></li>
+                                    <li><a data-toggle="tab" href="#doc">Mensajes Enviados</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="detalle" class="tab-pane fade in active">
+                                        <?php echo $this->partial('backend/mensajes/_recibidos.phtml', array( 'mensajes_recibidos' => $this->mensajes_recibidos ));?>
+                                    </div>
+                                    <div id="doc" class="tab-pane fade">
+                                        <?php echo $this->partial('backend/mensajes/_enviados.phtml', array( 'mensajes_enviados' => $this->mensajes_enviados));?>
+                                    </div>
+                                </div>
+
+                                <footer style="margin: 10px 15px 0;height:30px">
+                                </footer>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </div>
+                <!-- END COL -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
